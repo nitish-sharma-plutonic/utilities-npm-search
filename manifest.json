@@ -1,0 +1,13 @@
+{
+  "name": "Npm Search",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon/logo.jpeg"
+  },
+  "icons": {
+    "128": "icon/logo.jpeg"
+  },
+  "permissions": ["activeTab"]
+}

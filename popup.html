@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Extension Popup</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<style>
+    body{
+        width: 400px;
+        height: 500px;
+    }
+</style>
+<body>
+<div class="container-fluid mt-3">
+    <h3>Search</h3>
+    <input  id="searchInput" type="text" class="form-control " placeholder="Search...">
+    <div id="searchResults" class="list-group"></div>
+</div>
+
+
+<!--<script>-->
+<!--    function search() {-->
+<!--        var query = document.getElementById('searchInput').value;-->
+<!--        fetch('https://api.npms.io/v2/search/suggestions?q=' + query)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                // Process 'data' and display results-->
+<!--                var resultsContainer = document.getElementById('searchResults');-->
+<!--                resultsContainer.innerHTML = ''; // Clear previous results-->
+<!--                data.forEach(item => {-->
+<!--                    var listItem = document.createElement('a');-->
+<!--                    listItem.href = '#';-->
+<!--                    listItem.classList.add('list-group-item', 'list-group-item-action');-->
+<!--                    listItem.innerHTML = item.package.name;-->
+<!--                    listItem.onclick = function() {-->
+<!--                        showDetails(item.package.name);-->
+<!--                    };-->
+<!--                    resultsContainer.appendChild(listItem);-->
+<!--                });-->
+<!--            })-->
+<!--            .catch(error => console.error('Error:', error));-->
+<!--    }-->
+
+<!--    // Function to show item details-->
+<!--    function showDetails(packageName) {-->
+<!--        fetch('https://api.npms.io/v2/package/' + packageName)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                // Display details-->
+<!--                alert('Details for ' + packageName + ':\n' + JSON.stringify(data.collected.metadata, null, 2));-->
+<!--            })-->
+<!--            .catch(error => console.error('Error:', error));-->
+<!--    }-->
+
+<!--    // Event listener for search input-->
+<!--    document.getElementById('searchInput').addEventListener('input', function() {-->
+<!--        search();-->
+<!--    });-->
+<!--</script>-->
+<script src="js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
