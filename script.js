@@ -34,8 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const resultItem = document.createElement('button');
                 resultItem.classList.add('list-group-item', 'list-group-item-action');
                 resultItem.textContent = `${item?.package.name}\n${item?.package.description}`; // Including description on a new line
+                resultItem.addEventListener('click', () => {
+                    localStorage.setItem('selectedPackage', JSON.stringify(item.package));
+                    window.location.href = chrome.runtime.getURL('main.html');
+                });
+                
                 resultsContainer.appendChild(resultItem);
             });
+            resultsContainer.classList.add('show-scroll');
         }
 
         resultsContainer.style.display = results.length > 0 ? 'block' : 'none'; // Display the results container if there are results, otherwise hide it
@@ -50,4 +56,5 @@ document.addEventListener('DOMContentLoaded', function() {
             resultsContainer.style.display = 'none';
         }
     });
+   
 });
