@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.trim(); // Trim whitespace
 
-        fetch('https://api.npms.io/v2/search/suggestions?q=' + query)
+        fetch('https://www.npmjs.com/search/suggestions?q=' + query)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -31,11 +31,22 @@ document.addEventListener('DOMContentLoaded', function() {
             resultsContainer.appendChild(noResultsItem);
         } else {
             results.forEach(item => {
+                console.log("nitish",item);
                 const resultItem = document.createElement('button');
                 resultItem.classList.add('list-group-item', 'list-group-item-action');
-                resultItem.textContent = `${item?.package.name}\n${item?.package.description}`; // Including description on a new line
+                // resultItem.textContent = `${item?.package.name}\n${item?.package.description}`; // Including description on a new line
+                resultItem.innerHTML = `
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <strong>${item?.name}</strong><br>
+                <small>${item?.description}</small>
+            </div>
+            <div>
+                <small>v${item?.version}</small>
+            </div>
+        </div>`;
                 resultItem.addEventListener('click', () => {
-                    localStorage.setItem('selectedPackage', JSON.stringify(item.package));
+                    localStorage.setItem('selectedPackage', JSON.stringify(item.name));
                     window.location.href = chrome.runtime.getURL('main.html');
                 });
                 
