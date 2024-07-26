@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.trim(); // Trim whitespace
 
-        fetch('https://www.npmjs.com/search/suggestions?q=' + query)
+        fetch('https://api.npms.io/v2/search?q=' + query)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
-                displaySearchResults(data);
+                console.log(data?.results);
+                displaySearchResults(data?.results);
             })
             .catch(error => {
                 displaySearchResults([]); // Display empty list on error
@@ -38,15 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultItem.innerHTML = `
         <div style="display: flex; justify-content: space-between;">
             <div>
-                <strong>${item?.name}</strong><br>
-                <small>${item?.description}</small>
+                <strong>${item?.package?.name}</strong><br>
+                <small>${item?.package?.description}</small>
             </div>
             <div>
-                <small>v${item?.version}</small>
+                <small>v${item?.package?.version}</small>
             </div>
         </div>`;
                 resultItem.addEventListener('click', () => {
-                    localStorage.setItem('selectedPackage', JSON.stringify(item.name));
+                    localStorage.setItem('selectedPackage', JSON.stringify(item?.package?.name));
                     window.location.href = chrome.runtime.getURL('main.html');
                 });
                 
